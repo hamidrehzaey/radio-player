@@ -8,7 +8,7 @@ radioPersianPlayer = vlc.MediaPlayer('http://r.pgbu.ir:8000/live')
 class Radio(QWidget):
 	def __init__(self):
 		super().__init__()
-		self.resize(500, 500)
+		self.resize(600, 600)
 		self.setWindowTitle("radio player")
 		self.layout = QGridLayout()
 		self.setLayout(self.layout)
@@ -17,17 +17,20 @@ class Radio(QWidget):
 		self.cb.setAccessibleName("choose radio:")
 		self.cb.addItems(['radio gooshkon', 'radio persian'])
 		self.cb.activated.connect(self.Show)
-		self.layout.addWidget(self.cb)
+		self.layout.addChildWidget(self.cb)
+		self.cb.setGeometry(100, 100, 100, 50)
 
 		self.play = QPushButton('play')
 		self.play.setShortcut(QKeySequence('ctrl+p'))
-		self.layout.addWidget(self.play)
+		self.layout.addChildWidget(self.play)
+		self.play.setGeometry(100, 300, 100, 50)
 		self.play.clicked.connect(self.Play)
 		self.play.hide()
 
 		self.volume = QSlider()
 		self.volume.setAccessibleName('volume control')
-		self.layout.addWidget(self.volume)
+		self.layout.addChildWidget(self.volume)
+		self.volume.setGeometry(450, 100, 50, 300)
 		self.volume.setSliderPosition(50)
 		self.volume.valueChanged.connect(self.Volume)
 
